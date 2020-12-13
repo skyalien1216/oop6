@@ -1,0 +1,16 @@
+﻿"oop6.exe" (Win32). Загружено "C:\Users\SkyAlien\source\repos\oop6\Debug\oop6.exe". Символы загружены.
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\ntdll.dll". Символы загружены.
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\kernel32.dll". 
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\KernelBase.dll". 
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\msvcp140d.dll". 
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\vcruntime140d.dll". 
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\ucrtbased.dll". 
+Поток 0x21b4 завершился с кодом 0 (0x0).
+Поток 0x51c завершился с кодом 0 (0x0).
+Поток 0x358c завершился с кодом 0 (0x0).
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\sechost.dll". 
+"oop6.exe" (Win32). Загружено "C:\Windows\SysWOW64\rpcrt4.dll". 
+Поток 0x3c98 завершился с кодом -1073741510 (0xc000013a).
+Поток 0x3190 завершился с кодом -1073741510 (0xc000013a).
+Поток 0x42c завершился с кодом -1073741510 (0xc000013a).
+Программа "[14600] oop6.exe" завершилась с кодом -1073741510 (0xc000013a).

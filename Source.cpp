@@ -38,21 +38,23 @@ int main()
 			for (int i = 0; i < n2 + 1; i++)
 				cin >> c2[i];
 
-			Polynomial p1(n1, c1), p2(n2, c2);
+			Polynomial *p1 = new Polynomial(n1, c1),
+				*p2 =  new Polynomial(n2, c2);
+
+			Polynomial* c = dynamic_cast<Polynomial*>(p1->Add(p2));
 
 			PrintInfo();
-
 			cin >> choice;
 
 			if (choice == 1)
-				(p1 + p2).PrintCoefficients();
+				c->PrintCoefficients();
 			else
 			{
 				int x;
 				cout << "Введите значение аргумента: \n >";
 				cin >> x;
 
-				(p1 + p2).Print(x);
+				c->Print(x);
 			}
 
 		}
@@ -76,21 +78,23 @@ int main()
 			for (int i = 0; i < n2 + 1; i++)
 				cin >> c2[i];
 
-			Polynomial p1(n1, c1), p2(n2, c2);
+			Polynomial* p1 = new Polynomial(n1, c1),
+				* p2 = new Polynomial(n2, c2);
+
+			Polynomial* c = dynamic_cast<Polynomial*>(p1->Subtract(p2));
 
 			PrintInfo();
-
 			cin >> choice;
 
 			if (choice == 1)
-				(p1 - p2).PrintCoefficients();
+				c->PrintCoefficients();
 			else
 			{
 				int x;
 				cout << "Введите значение аргумента: \n >";
 				cin >> x;
 
-				(p1 - p2).Print(x);
+				c->Print(x);
 			}
 
 		}
@@ -114,21 +118,24 @@ int main()
 			for (int i = 0; i < n2 + 1; i++)
 				cin >> c2[i];
 
-			Polynomial p1(n1, c1), p2(n2, c2);
+			Polynomial* p1 = new Polynomial(n1, c1),
+				* p2 = new Polynomial(n2, c2);
+
+			Polynomial* c = dynamic_cast<Polynomial*>(p1->Multiply(p2));
 
 			PrintInfo();
 
 			cin >> choice;
 
 			if (choice == 1)
-				(p1 * p2).PrintCoefficients();
+				c->PrintCoefficients();
 			else
 			{
 				int x;
 				cout << "Введите значение аргумента: \n >";
 				cin >> x;
 
-				(p1 * p2).Print(x);
+				c->Print(x);
 			}
 
 		}
@@ -170,32 +177,6 @@ int main()
 		}
 	
 	}
-	
-
-	//int* c1 = new int[4]{ 1,2,3,4 };
-
-	//Polynomial p1(2,c), p2(3,c);
-
-	//p1.Print(1);
-	//p1.PrintCoefficients();
-	//cout << endl;
-
-	//p2.Print(1);
-	//p2.PrintCoefficients();
-	//cout << endl;
-
-	//cout << p2.FindTerm(3, 1) << endl;
-	//cout << endl;
-
-	//(p1 + p2).Print(1);
-	//(p1 + p2).PrintCoefficients();
-	//(p1 - p2).Print(1);
-	//(p2 - p1).Print(1);
-	//cout << endl;
-
-	//Polynomial p3 = p1 * p2;
-	//p3.PrintCoefficients();
-	//p3.Print(1);
 
 	return 0;
 }

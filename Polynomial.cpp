@@ -12,7 +12,7 @@ Polynomial::Polynomial(int degree, int* c)
 	}
 }
 
-Polynomial::Polynomial(int degree)
+Polynomial::Polynomial(int degree) 
 {
 	this->degree = degree;
 	coefficients = new int[degree + 1];
@@ -49,63 +49,71 @@ int Polynomial::getDegree()
 	return degree;
 }
 
-Polynomial operator+(Polynomial a, Polynomial b)
+Calculations* Polynomial::Add(Calculations* b)
 {
-	int new_degree = a.MaxDegree(b),
+	Polynomial* new_b = dynamic_cast<Polynomial*>(b);
+
+	int new_degree = MaxDegree(*new_b),
 		lesser_degree;
 
-	if (a.degree != new_degree)
-		lesser_degree = a.degree;
+	if (degree != new_degree)
+		lesser_degree = degree;
 	else
-		lesser_degree = b.degree;
+		lesser_degree = new_b->degree;
 
-	Polynomial c(new_degree);
+	Polynomial* c = new Polynomial(new_degree);
 
 	for (int i = 0; i <= lesser_degree; i++)
-		c.coefficients[i] = a.coefficients[i] + b.coefficients[i];
+		c->coefficients[i] = coefficients[i] + new_b->coefficients[i];
 
-	if (a.degree != a.MaxDegree(b))
+	if (degree != MaxDegree(*new_b))
 		for (int i = lesser_degree + 1; i < new_degree + 1; i++)
-			c.coefficients[i] = b.coefficients[i];
+			c->coefficients[i] = new_b->coefficients[i];
 	else
 		for (int i = lesser_degree + 1; i < new_degree + 1; i++)
-			c.coefficients[i] = a.coefficients[i];
+			c->coefficients[i] = coefficients[i];
 
 	return c;
 }
 
-Polynomial operator-(Polynomial a, Polynomial b)
+Calculations* Polynomial::Subtract(Calculations* b)
 {
-	for (int i = 0; i < b.degree + 1; i++)
-		b.coefficients[i] *= -1;
+	Polynomial* new_b = dynamic_cast<Polynomial*>(b);
 
-	Polynomial c = a + b;
+	for (int i = 0; i < new_b->degree + 1; i++)
+		new_b->coefficients[i] *= -1;
 
-	for (int i = 0; i < b.degree + 1; i++)
-		b.coefficients[i] *= -1;
+	Calculations* c = this->Add(new_b);
+
+	for (int i = 0; i < new_b->degree + 1; i++)
+		new_b->coefficients[i] *= -1;
 
 	return c;
 }
 
-Polynomial operator*(Polynomial a, Polynomial b)
+Calculations* Polynomial::Multiply(Calculations* b)
 {
-	int maxdegree = a.MaxDegree(b);
-	int new_degree = a.degree + b.degree;
-	Polynomial c(new_degree);
+	Polynomial* new_b = dynamic_cast<Polynomial*>(b);
 
-	if (maxdegree == b.degree)
-		c = a.Multiply(b);
+	int maxdegree = MaxDegree(*new_b);
+	int new_degree = degree + new_b->degree;
+	Calculations* c;
+
+	if (maxdegree == new_b->degree)
+		c = this->Multiplication(b);
 	else
-		c = b.Multiply(a);
+		c = new_b->Multiplication(this);
 
 	return c;
 }
 
-Polynomial Polynomial::Multiply(Polynomial b)
+Calculations* Polynomial::Multiplication(Calculations* b)
 {
-	int maxdegree = MaxDegree(b);
-	int new_degree = degree + b.degree;
-	Polynomial c(new_degree);
+	Polynomial* new_b = dynamic_cast<Polynomial*>(b);
+
+	int maxdegree = MaxDegree(*new_b);
+	int new_degree = degree + new_b->degree;
+	Polynomial* c = new Polynomial(new_degree);
 
 	int iterator = 0, i = 0, j = 0, end = 0;
 
@@ -126,11 +134,9 @@ Polynomial Polynomial::Multiply(Polynomial b)
 
 		int value = 0;
 		for (int k = 0; k < end; k++, i++, j--)
-		{
-			value += coefficients[i] * b.coefficients[j];
-		}
+			value += coefficients[i] * new_b->coefficients[j];
 
-		c.coefficients[iterator] = value;
+		c->coefficients[iterator] = value;
 		iterator++;
 	}
 
